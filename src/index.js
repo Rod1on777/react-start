@@ -31,6 +31,7 @@ const helpText = "Help text bebriki"
 
 // Ещё один формат вывода с помощью констанит
 const elements = (
+
     <div className="elements">
         <h1> Elements </h1>
         <input placeholder={helpText} onClick={inputClick} onMouseEnter={mouseOver} /> //Создание констатны элемента input, вополняющую функцию inputClick при клике и mjuseOver при наведении
@@ -58,22 +59,32 @@ app4.render(<AppFunction />)
 
 
 // ----------- Вывод функции внутри другой функции ----------
-function AppFunction2() {
-    return (<div className="function">
-        <h1> Function inside function </h1>
-        <Header />
-        <Header />  // Функция header внутри функции AppFunction2
-        <Header />
-        <input placeholder={helpText} onClick={inputClick} onMouseEnter={mouseOver} /> //Создание констатны элемента input, вополняющую функцию inputClick при клике и mjuseOver при наведении
-        <p> {helpText === "Help text bebriki" ? "Yes" : "No"}</p>    //Условие: если helpText = "Help text bebriki", вывести yes, если нет, то no
-    </div>);
+
+// блоее новый и правильный метод вывода функции через class
+class AppFunction2 extends React.Component {
+
+    inputClick() { console.log("Click") }
+    mouseOver() { console.log("Over") }
+
+    render() {
+        return (<div className="function">
+            <h1> Function inside function </h1>
+            <Header title="Web head" /> //Вывод функции Header + присвоения свойства title
+            <Header title="!!!" />
+            <Header />  // Функция header внутри функции AppFunction2
+            <Header />
+            <input placeholder={helpText} onClick={inputClick} onMouseEnter={mouseOver} /> //Создание констатны элемента input, вополняющую функцию inputClick при клике и mjuseOver при наведении
+            <p> {helpText === "Help text bebriki" ? "Yes" : "No"}</p>    //Условие: если helpText = "Help text bebriki", вывести yes, если нет, то no
+        </div>)
+    }
+
 }
 
 // блоее новый и правильный метод вывода функции
 class Header extends React.Component {
     render() {
         return (
-            <header> Шапка Сайта !!</header>
+            <header> Шапка Сайта !! {this.props.title} </header> // Текст внутри хедера + передача свойства title
         )
     }
 }
