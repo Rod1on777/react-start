@@ -43,4 +43,44 @@ app.render(elements)
 
 
 
+//компоненты и их возможности
+function AppFunction() {
+    return (<div className="function">
+        <h1> Function </h1>
+        <input placeholder={helpText} onClick={inputClick} onMouseEnter={mouseOver} /> //Создание констатны элемента input, вополняющую функцию inputClick при клике и mjuseOver при наведении
+        <p> {helpText === "Help text bebriki" ? "Yes" : "No"}</p>    //Условие: если helpText = "Help text bebriki", вывести yes, если нет, то no
+    </div>);
+}
+
+const app4 = ReactDOMClient.createRoot(document.getElementById("app4"))
+
+app4.render(<AppFunction />)
+
+
+// ----------- Вывод функции внутри другой функции ----------
+function AppFunction2() {
+    return (<div className="function">
+        <h1> Function inside function </h1>
+        <Header />
+        <Header />  // Функция header внутри функции AppFunction2
+        <Header />
+        <input placeholder={helpText} onClick={inputClick} onMouseEnter={mouseOver} /> //Создание констатны элемента input, вополняющую функцию inputClick при клике и mjuseOver при наведении
+        <p> {helpText === "Help text bebriki" ? "Yes" : "No"}</p>    //Условие: если helpText = "Help text bebriki", вывести yes, если нет, то no
+    </div>);
+}
+
+// блоее новый и правильный метод вывода функции
+class Header extends React.Component {
+    render() {
+        return (
+            <header> Шапка Сайта !!</header>
+        )
+    }
+}
+
+const app5 = ReactDOMClient.createRoot(document.getElementById("app5"))
+
+app5.render(<AppFunction2 />)
+
+
 
